@@ -7,5 +7,3 @@ Questo programma fa al caso tuo!
 
 Il programma si basa sul processing di immagini e riesce a prevedere il momento in cui dovrà premere spazio.
 Funziona solo su Windows.
-
-Per eseguirlo è sufficiente eseguire lo script con python 3.
