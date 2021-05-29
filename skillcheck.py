@@ -76,7 +76,7 @@ def returnWhiteImage(frame_np):	 #funzione che mi ritorna l'immagine filtrata e 
 	return mask   
 
 
-def match(im, t):
+def match(im, t): 	#funzione che ritorna true se il template è presente nell'immagine, altrimenti ritorna false
 	global top_left
 	res = cv2.matchTemplate(t, im, cv2.TM_CCOEFF_NORMED)
 	min_val, max_val, min_loc, max_loc=cv2.minMaxLoc(res)
@@ -89,7 +89,7 @@ def match(im, t):
 	#print(max_val)
 	return False
 	
-def match_debug(im, t):
+def match_debug(im, t):		#funzione che ritorna true se il template è presente nell'immagine, altrimenti ritorna false
 	global top_left
 	res = cv2.matchTemplate(t, im, cv2.TM_CCOEFF_NORMED)
 	min_val, max_val, min_loc, max_loc=cv2.minMaxLoc(res)
@@ -102,7 +102,7 @@ def match_debug(im, t):
 	print(max_val)
 	return False
 
-def getContours(img):
+def getContours(img):		#funzione che ritorna i contorni trovati all'interno di un'immagine
 	medianFiltered=cv2.medianBlur(img,5)
 	contours, _ = cv2.findContours(medianFiltered, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 	contour_list = []
@@ -113,7 +113,7 @@ def getContours(img):
 	return contour_list
 
 # Written by Antonio Napolitano <nap@napaalm.xyz>
-def find_angle(center: complex, needle: complex, target: complex) -> float:
+def find_angle(center: complex, needle: complex, target: complex) -> float:		#funzione che trova l'angolo dello skillcheck dato il centro e le coordinate del centro delle due lancette
 	"""Calculates the angle between the needle and the target in radians, given the center of the skillcheck.
 
 	Parameters
@@ -148,20 +148,22 @@ def find_angle(center: complex, needle: complex, target: complex) -> float:
 
 #active = True
 
-def listener():
-	global active
-	while True:
-		if is_pressed("z"):
-			active = not active
-			time.sleep(0.5)
-		time.sleep(0.01)
+#def listener():
+	#global active
+	#while True:
+		#if is_pressed("z"):
+			#active = not active
+			#time.sleep(0.5)
+		#time.sleep(0.01)
 	
 middle = (100,100)
-omega = 5.453669148864465
+omega = 5.453669148864465		#velocità angolare calcolata sperimentalmente
+#dichiaro le varie porzioni di schermo che vanno controllate sotto forma di dicts
 monitor = {"top": 440, "left": 860, "width": 200, "height": 200}
 monitor2 = {"top": 840, "left": 831, "width": 43, "height": 14}
 monitor3 = {"top": 824, "left": 746, "width": 53, "height": 55}
 monitor4 = {"top": 823, "left": 743, "width": 62, "height": 59}
+#carico le varie immagini in memoria, così da poterle usare per la logica del programma
 heal = cv2.cvtColor(cv2.imread("./heal.png"), cv2.COLOR_BGR2GRAY)
 medikit = cv2.cvtColor(cv2.imread("./medikit.png"), cv2.COLOR_BGR2GRAY)
 ranger = cv2.cvtColor(cv2.imread("./ranger.png"), cv2.COLOR_BGR2GRAY)
